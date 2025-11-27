@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS robots (
 
 -- Insert sample user
 INSERT INTO users (email, password_hash) 
-VALUES ('admin@test.com', '$2b$10$YixjauVWZWt8.vgfb8A8.uHWzx7KfxNt3j7DvH5s4O5s9p8A8p7Ym')
+VALUES ('admin@test.com', '$2b$10$w.uMaz3nAhARJL1kRL07M.L3LfaMG0dIb3Lm9LoVfW6ncMTjGLYhq')
 ON CONFLICT (email) DO NOTHING;
 
 -- Insert sample robots
