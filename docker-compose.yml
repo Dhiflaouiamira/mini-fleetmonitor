@@ -1,53 +1,47 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: api
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: robots
     ports:
-      - "3000:3000"   # REST API
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./api
     environment:
       DB_HOST: db
+      DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: 1234
-      DB_DATABASE: robots
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      JWT_SECRET: mysupersecretkey
+      DB_PASSWORD: postgres
+      DB_NAME: robots
+      JWT_SECRET: your_jwt_secret
+    ports:
+      - "3000:3000"
+      - "8081:8080"
     depends_on:
       - db
       - redis
 
   frontend:
-    build:
-      context: ./mini-fleet-frontend
-      dockerfile: Dockerfile
-    container_name: frontend
+    build: ./mini-fleet-frontend
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+      REACT_APP_WS_URL: ws://localhost:8081
     ports:
       - "3001:3000"
     depends_on:
       - api
 
-  db:
-    image: postgres:15
-    container_name: db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: robots
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql   # <-- Mount init script
-
-  redis:
-    image: redis:7
-    container_name: redis
-    ports:
-      - "6379:6379"
-
 volumes:
-  db_data:
+  db-data:
