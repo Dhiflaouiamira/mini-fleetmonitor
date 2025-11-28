@@ -94,7 +94,7 @@ POST /simulation/start
 POST /simulation/stop
 → Stop auto-movement
 
-text
+
 
 ## What's Happening Behind the Scenes
 
@@ -151,7 +151,7 @@ mini-fleet-docker/
 │ └── docker-compose related files
 └── docker-compose.yml # Tells Docker how to run everything
 
-text
+
 
 ## What Each Part Does
 
@@ -213,7 +213,7 @@ Delete a robot
 
 Click "Start" again
 
-text
+
 
 ## Performance
 
@@ -231,7 +231,7 @@ db → PostgreSQL (port 5432)
 redis → Redis cache (port 6379)
 ws → WebSocket server (port 8080 → 8081)
 
-text
+
 
 All running in their own containers, talking to each other automatically.
 
@@ -244,13 +244,13 @@ curl -X POST http://localhost:3000/auth/login
 -H "Content-Type: application/json"
 -d '{"email":"admin@test.com","password":"test123"}'
 
-text
+
 
 **2. Get all robots (replace TOKEN):**
 curl -X GET http://localhost:3000/robots
 -H "Authorization: Bearer TOKEN"
 
-text
+
 
 **3. Add a robot:**
 curl -X POST http://localhost:3000/robots/add
@@ -258,7 +258,7 @@ curl -X POST http://localhost:3000/robots/add
 -H "Content-Type: application/json"
 -d '{"name":"Robot-X","lat":40.7128,"lon":-74.0060}'
 
-text
+
 
 ## Common Questions
 
@@ -299,7 +299,8 @@ Built as a full-stack assignment project demonstrating:
 - Authentication & security
 
 Questions? Check the logs: `docker logs [container-name]`
-
+![alt text](image.png)
+![alt text](image-1.png)
 ---
 
 **Ready to go!** 🚀 Just run `docker-compose up --build` and start tracking robots!
