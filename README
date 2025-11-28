@@ -299,8 +299,8 @@ Built as a full-stack assignment project demonstrating:
 - Authentication & security
 
 Questions? Check the logs: `docker logs [container-name]`
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](login.png)
+![alt text](dashboard.png)
 ---
 
 **Ready to go!** 🚀 Just run `docker-compose up --build` and start tracking robots!
